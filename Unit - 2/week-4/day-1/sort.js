@@ -1,60 +1,34 @@
 function runProgram(input) {
 	input = input.trim().split('\n');
-	let dim = input[0].split(' ').map(Number);
-	let mod = dim[1];
+	let size = +input[0];
 	let arr = input[1].trim().split(' ').map(Number);
-	let tempArr = [...arr];
-	let i, j, temp;
-	for (i = arr.length; i > 1; i--) {
-		for (j = 0; j < i - 1; j++) {
-			console.log(arr[j], arr[j+1])
+	let indexArr = [];
+	count = 0;
+	for (let i = 0; i < size; i++) {
+		indexArr.push(count++);
+	}
+	for (let i = 0; i < size - 1; i++) {
+		for (let j = 0; j < size - i - 1; j++) {
 			if (arr[j] > arr[j + 1]) {
-				temp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = temp;
+				swap(arr, j, j + 1);
+				swap(indexArr, j, j + 1);
 			}
 		}
 	}
-
-	// arr = [[val, index], [val, index]]
-
-	// console.log(indexArr);
-	// let indexArr = '';
-	// let visitedIndex = '';
-	// for (let i = 0; i < arr.length; i++) {
-	// 	for (let j = tempArr.length - 1; j >= 0; j--) {
-	// 		if (arr[i] === tempArr[j]) {
-	// 			indexArr += j + ' ';
-	// 			// if (!j in visitedIndex) {
-	// 			// } else {
-	// 			// 	continue;
-	// 			// }
-	// 		} else {
-	// 			continue;
-	// 		}
-	// 	}
-	// }
-	// console.log(indexArr);
-	let indexArr = '';
-	//let visitedIndex = '';
-	for (let i = 0; i < arr.length; i++) {
-		for (let j = tempArr.length - 1; j >= 0; j--) {
-			if (arr[i] === tempArr[j]) {
-				// if (indexArr.includes(tempArr[j])) {
-				// 	j--;
-				// 	console.log(j);
-				// 	break;
-				// }
-				indexArr += j + ' ';
-			} else {
-				continue;
-			}
-		}
+	let output = '';
+	for (let i = 0; i < size; i++) {
+		output += indexArr[i] + ' ';
 	}
-	console.log(indexArr);
+	console.log(output);
 }
 
-if (process.env.USERNAME === 'vishal') {
+const swap = (arr, a, b) => {
+	let temp = arr[a];
+	arr[a] = arr[b];
+	arr[b] = temp;
+	return arr;
+};
+if (process.env.USER === 'vishal') {
 	runProgram(`5
     4 5 3 7 1`);
 } else {
