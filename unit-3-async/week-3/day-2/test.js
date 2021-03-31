@@ -35,22 +35,21 @@ function checkParanthesis(matrix) {
 			continue;
 		}
 		if (top === -1) return false;
-		let bracket;
-		//  {]
+		let stackTop;
 		switch (matrix[i]) {
 			case ')':
-				bracket = pop();
-				if (bracket == '{' || bracket == '[') return false;
+				stackTop = pop();
+				if (stackTop == '{' || stackTop == '[') return false;
 				break;
 
 			case '}':
-				bracket = pop();
-				if (bracket == '(' || bracket == '[') return false;
+				stackTop = pop();
+				if (stackTop == '(' || stackTop == '[') return false;
 				break;
 
 			case ']':
-				bracket = pop();
-				if (bracket == '(' || bracket == '{') return false;
+				stackTop = pop();
+				if (stackTop == '(' || stackTop == '{') return false;
 				break;
 		}
 	}
@@ -71,8 +70,10 @@ function runProgram(input) {
 	}
 }
 if (process.env.USERNAME === 'vishal') {
-	runProgram(`1
-    {]
+	runProgram(` 3
+    {([])}
+    ()
+    ([]
 `);
 } else {
 	process.stdin.resume();

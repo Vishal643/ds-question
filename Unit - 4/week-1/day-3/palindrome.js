@@ -1,22 +1,17 @@
-function runProgram(input) {
-	if (Number(input) % 4 === 0 || Number(input) % 7 === 0) {
-		console.log('YES');
-		return;
+function palindrome(input, num) {
+	if (num == 1) {
+		return input[0];
 	}
+	return input[num - 1] + palindrome(input, num - 1);
+}
 
+function runProgram(input) {
 	input = input.trim();
-	for (var i = 0; i < input.length; i++) {
-		if (input[i] !== '4' && input[i] !== '7') {
-			console.log('NO');
-			return;
-		}
-	}
-	console.log('YES');
+	console.log(input === palindrome(input, input.length) ? 'YES' : 'NO');
 }
 
 if (process.env.USERNAME === 'vishal') {
-	runProgram(`
-	47`);
+	runProgram(`naman`);
 } else {
 	process.stdin.resume();
 	process.stdin.setEncoding('ascii');

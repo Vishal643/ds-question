@@ -1,24 +1,55 @@
+let stack = [];
+let top = -1;
+let size = 0;
+
+function push(elem) {
+	top++;
+	stack[top] = elem;
+	size++;
+}
+
+function pop() {
+	if (top === -1) {
+		return;
+	} else {
+		x = stack[top];
+		top--;
+		size--;
+		return x;
+	}
+}
+
+function getSize() {
+	if (top === -1) return -1;
+	return stack[top];
+}
+function peek() {
+	if (top === -1) return -1;
+	return stack[top];
+}
+
 function runProgram(input) {
 	input = input.split(/[\r\n]+/);
 	let arr = input[1].trim().split(' ').map(Number);
-
 	let outputstr = '';
 
 	for (let i = 0; i < arr.length; i++) {
-		let j;
-		for (j = i - 1; j >= 0; j--) {
-			if (arr[j] < arr[i]) {
-				outputstr += arr[j] + ' ';
-				break;
-			}
+		while (top !== -1 && peek() >= arr[i]) {
+			pop();
 		}
-		if (j === -1) outputstr += '-1 ';
+		if (top === -1) {
+			outputstr += '-1' + ' ';
+		} else {
+			outputstr += peek() + ' ';
+		}
+		push(arr[i]);
 	}
+
 	console.log(outputstr);
 }
 if (process.env.USERNAME === 'vishal') {
 	runProgram(`8
-    10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10`);
+    39 27 11 4 24 32 32 1`);
 } else {
 	process.stdin.resume();
 	process.stdin.setEncoding('ascii');

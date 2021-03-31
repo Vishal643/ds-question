@@ -37,17 +37,15 @@ function runProgram(input) {
 
 	let topElement;
 	for (let i = 0; i < matrix.length; i++) {
-		for (let j = 0; j < matrix[i].length; j++) {
-			if (matrix[i][j] == 1) {
-				if (top === -1) console.log('No Food');
-				else {
-					topElement = peek();
-					pop();
-					console.log(topElement);
-				}
-			} else if (matrix[i][j] == 2) {
-				push(matrix[i][j + 1]);
+		if (matrix[i][0] == 1) {
+			if (top === -1) console.log('No Food');
+			else {
+				topElement = peek();
+				pop();
+				console.log(topElement);
 			}
+		} else if (matrix[i][0] == 2) {
+			push(matrix[i][1]);
 		}
 	}
 }

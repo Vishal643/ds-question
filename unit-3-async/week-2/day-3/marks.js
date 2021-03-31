@@ -2,13 +2,13 @@ let stack = [];
 let top = -1;
 let size = 0;
 
-function pushOnStack(elem) {
+function push(elem) {
 	top++;
 	stack[top] = elem;
 	size++;
 }
 
-function pop() {
+function popStack() {
 	if (top === -1) {
 		return;
 	} else {
@@ -18,48 +18,33 @@ function pop() {
 		return x;
 	}
 }
-
-function getSize() {
-	if (top === -1) return -1;
-	return stack[top];
-}
 function peek() {
 	if (top === -1) return -1;
 	return stack[top];
 }
 
-function runProgram(input) {
-	input = input.trim().split('\n');
-	let num_input = +input[0];
-	let j = 1;
-	let arr;
-
-	for (let i = 0; i < num_input; i++) {
-		let size = +input[j++].trim();
-
-		arr = input[j++].trim().split(' ').map(Number);
-		let arr1 = new Array(arr.length);
-		let outputStr = '';
-
-		for (let k = arr.length - 1; k >= 0; k--) {
-			while (top !== -1 && peek() <= arr[k]) pop();
-
-			if (top === -1) arr1[k] = -1;
-			else arr1[k] = peek();
-
-			pushOnStack(arr[k]);
-		}
-
-		for (let k = 0; k < arr.length; k++) outputStr += arr1[k] + ' ';
-		console.log(outputStr);
-	}
+function getSize() {
+	if (top === -1) return -1;
+	return size;
 }
 
+function runProgram(input) {
+	input = input.split(/[\r\n]+/);
+	let size = Number(input[0]);
+	let arr = input[1].trim().split(' ').map(Number);
+	let output = '';
+	for (let i = 0; i < size; i++) {
+		let j;
+		for (j = i + 1; j < size; j++) {
+			if (arr[i] < arr[j]) break;
+		}
+		if (j === size) output += arr[i] + ' ';
+	}
+	console.log(output);
+}
 if (process.env.USERNAME === 'vishal') {
-	runProgram(`
-	1
-	5
-	5 4 1 3 2`);
+	runProgram(`6
+    16 17 4 3 5 2`);
 } else {
 	process.stdin.resume();
 	process.stdin.setEncoding('ascii');

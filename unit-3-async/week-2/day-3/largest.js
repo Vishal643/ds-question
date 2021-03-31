@@ -1,55 +1,20 @@
-let stack = [];
-let top = -1;
-let size = 0;
-
-function push(elem) {
-	top++;
-	stack[top] = elem;
-	size++;
-}
-
-function pop() {
-	if (top === -1) {
-		return;
-	} else {
-		x = stack[top];
-		top--;
-		size--;
-		return x;
-	}
-}
-
-function getSize() {
-	if (top === -1) return -1;
-	return stack[top];
-}
-function peek() {
-	if (top === -1) return -1;
-	return stack[top];
-}
-
 function runProgram(input) {
 	input = input.split(/[\r\n]+/);
 	let arr = input[1].trim().split(' ').map(Number);
-	let outputstr = '';
-
+	let stack = [];
 	for (let i = 0; i < arr.length; i++) {
-		while (top !== -1 && peek() <= arr[i]) {
-			pop();
-		}
-		if (top === -1) {
-			outputstr += '-1' + ' ';
+		if (stack.length === 0 || stack[stack.length - 1] >= input[i]) {
+			stack.push(input[i]);
 		} else {
-			outputstr += peek() + ' ';
-			// outputstr += i + ' ';
+			stack.pop();
 		}
-		push(arr[i]);
 	}
-	console.log(outputstr);
+
+	console.log(stack.join(' '));
 }
 if (process.env.USERNAME === 'vishal') {
-	runProgram(`5
-    5 4 1 3 2`);
+	runProgram(`6
+    16 17 4 3 5 2`);
 } else {
 	process.stdin.resume();
 	process.stdin.setEncoding('ascii');

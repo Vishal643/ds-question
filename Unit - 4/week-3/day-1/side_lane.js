@@ -1,23 +1,24 @@
 function runProgram(input) {
 	input = input.trim().split('\n');
-	let stack = [],
-		ansArr = [],
-		number = 1,
-		top,
-		peek,
-		i = 0,
-		n;
+	// let stack = [],
+	// 	ansArr = [],
+	// 	number = 1,
+	// let top,
+	// 	peek,
+	let i = 0;
+	// number_of_input;
 	while (true) {
-		n = Number(input[i++]);
-		top = n - 1;
-		peek = -1;
-		stack = [];
-		ansArr = [];
-		number = 1;
-		if (n === 0) return;
+		let number_of_input = Number(input[i++]);
+		// console.log(number_of_input);
+		let top = number_of_input - 1;
+		let peek = -1;
+		let stack = [];
+		let ansArr = [];
+		let number = 1;
+		if (number_of_input === 0) return;
 		stack = input[i++].trim().split(' ').reverse().map(Number);
 		while (true) {
-			if (number === n + 1) break;
+			if (number === number_of_input + 1) break;
 			if (number === stack[top]) {
 				stack.pop();
 				top--;

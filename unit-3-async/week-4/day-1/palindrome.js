@@ -1,4 +1,4 @@
-function toLowerCase(str) {
+function convertToLower(str) {
 	let upperChar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	let lowerChar = 'abcdefghijklmnopqrstuvwxyz';
 	let newStr = '';
@@ -14,19 +14,15 @@ function toLowerCase(str) {
 
 function runProgram(input) {
 	input = input.trim();
-	let reversed_str = '';
+	let reverse_str = '';
 	let original_str = '';
 	for (let i = 0; i < input.length; i++) {
-		original_str += toLowerCase(input[i]);
+		original_str += convertToLower(input[i]);
 	}
 	for (let i = original_str.length - 1; i >= 0; i--) {
-		reversed_str += original_str[i];
+		reverse_str += original_str[i];
 	}
-	if (reversed_str === original_str) {
-		console.log('YES');
-	} else {
-		console.log('NO');
-	}
+	console.log(reverse_str === original_str ? 'YES' : 'NO');
 }
 if (process.env.USERNAME === 'vishal') {
 	runProgram(`

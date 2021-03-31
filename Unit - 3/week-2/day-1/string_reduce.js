@@ -31,7 +31,7 @@ function peek() {
 function runProgram(input) {
 	input = input.trim();
 	let output = '';
-	//njjjj
+	
 	push(input[0]);
 	for (let i = 1; i < input.length; i++) {
 		if (top !== -1 && input[i] === peek()) {

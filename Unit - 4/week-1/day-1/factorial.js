@@ -1,20 +1,18 @@
-const runProgram = (input) => {
-	input = input.trim().split('\n');
-	let arr = input[1].trim().split(' ').map(Number);
-	let evenSum = 0,
-		oddSum = 0;
-
-	for (let i = 0; i < arr.length; i++) {
-		if (i % 2 === 1) oddSum += arr[i];
-		else evenSum += arr[i];
+function fact(num) {
+	if (num == 1) {
+		return 1;
 	}
+	return num * fact(num - 1);
+}
 
-	console.log(oddSum === evenSum ? 'YES' : 'NO');
-};
-
+function runProgram(input) {
+	input = +input.trim();
+	let factorial = fact(input);
+	console.log(factorial);
+}
 if (process.env.USERNAME === 'vishal') {
-	runProgram(`2
-    2 2`);
+	runProgram(`
+	5`);
 } else {
 	process.stdin.resume();
 	process.stdin.setEncoding('ascii');

@@ -7,11 +7,11 @@ function runProgram(input) {
 	for (let i = 0; i < size; i++) {
 		indexArr.push(i);
 	}
-	for (let i = 0; i < size - 1; i++) {
-		for (let j = 0; j < size - i - 1; j++) {
-			if (arr[j] > arr[j + 1]) {
-				swap(arr, j, j + 1);
-				swap(indexArr, j, j + 1);
+	for (let i = 0; i < arr.length - 1; i++) {
+		for (let j = i + 1; j < arr.length; j++) {
+			if (arr[i] > arr[j]) {
+				swap(arr, i, j);
+				swap(indexArr, i, j);
 			}
 		}
 	}

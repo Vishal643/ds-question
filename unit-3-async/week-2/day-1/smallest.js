@@ -32,8 +32,6 @@ function runProgram(input) {
 	input = input.split(/[\r\n]+/);
 	let arr = input[1].trim().split(' ').map(Number);
 	let outputstr = '';
-	// 0 1  2  3  4  5  6 7
-	//39 27 11 4 24 32 32 1
 	for (let i = 0; i < arr.length; i++) {
 		while (top !== -1 && peek() >= arr[i]) {
 			pop();
@@ -42,7 +40,6 @@ function runProgram(input) {
 			outputstr += '-1' + ' ';
 		} else {
 			outputstr += peek() + ' ';
-			// outputstr += i + 1 + ' ';
 		}
 		push(arr[i]);
 	}
