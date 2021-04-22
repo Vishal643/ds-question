@@ -1,18 +1,29 @@
-function fib(input, num) {
-	if (num == 1) {
-		return input[0];
+function birthDay(n, k, currElem, arr) {
+	if (arr.length === k) {
+		console.log(arr.join(' '));
+		return;
 	}
-	return fib(input, num - 1) + fib(input, num - 2);
+	for (let i = currElem; i <= n; i++) {
+		arr.push(i);
+		birthDay(n, k, i + 1, arr);
+		arr.pop();
+	}
 }
 
 function runProgram(input) {
-	input = input.trim();
-	console.log(input === fib(input, input.length) ? 'YES' : 'NO');
+	input = input.trim().split('\n');
+	let mat = input[0].trim().split(' ').map(Number);
+	let n = mat[0];
+	let k = mat[1];
+
+	let currElem = 1;
+	let arr = [];
+	birthDay(n, k, currElem, arr);
 }
 
 if (process.env.USERNAME === 'vishal') {
 	runProgram(`
-    1`);
+    4 2`);
 } else {
 	process.stdin.resume();
 	process.stdin.setEncoding('ascii');

@@ -26,9 +26,7 @@ function followKnight(row, column, moves) {
 
 function runProgram(input) {
 	input = input.trim().split(' ').map(Number);
-	let row = input[0];
-	let column = input[1];
-	let moves = input[2];
+	let [row, column, moves] = input;
 	console.log(followKnight(row, column, moves));
 }
 if (process.env.USERNAME === 'vishal') {

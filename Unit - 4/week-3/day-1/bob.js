@@ -1,19 +1,25 @@
-function runProgram(input) {
-	input = input.split(/[\r\n]+/);
-	let size = Number(input[0]);
-	let arr = input[1].trim().split(' ').map(Number);
-	let output = '';
-	for (let i = 0; i < size; i++) {
-		for (let j = i + 1; j < size; j++) {
-			if (arr[i] < arr[j]) break;
-		}
-		if (j == size) output += arr[i] + ' ';
+function helpBob(num) {
+	if (num === 1 || num === 0) {
+		return 1;
 	}
-	console.log(output);
+
+	if (num === 3) {
+		return 3;
+	}
+	if (num === 5) {
+		return 5;
+	}
+	return helpBob(num - 1) + helpBob(num - 2) + helpBob(num - 5);
 }
+
+function runProgram(input) {
+	input = Number(input.trim());
+	console.log(helpBob(input));
+}
+
 if (process.env.USERNAME === 'vishal') {
-	runProgram(`6
-    16 17 4 3 5 2`);
+	runProgram(`
+    7`);
 } else {
 	process.stdin.resume();
 	process.stdin.setEncoding('ascii');

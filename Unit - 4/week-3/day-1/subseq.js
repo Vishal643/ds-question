@@ -1,18 +1,27 @@
-function fib(input, num) {
-	if (num == 1) {
-		return input[0];
+function subString(str, curr, index) {
+	if (index === str.length) {
+		console.log(curr);
+		return;
 	}
-	return fib(input, num - 1) + fib(input, num - 2);
+	subString(str, curr, index + 1);
+	curr += str[index];
+	subString(str, curr, index + 1);
 }
 
 function runProgram(input) {
-	input = input.trim();
-	console.log(input === fib(input, input.length) ? 'YES' : 'NO');
+	input = input.trim().split('\n');
+
+	let string = input[1].trim();
+	let index = 0;
+	let curr = '';
+
+	subString(string, curr, index);
 }
 
 if (process.env.USERNAME === 'vishal') {
 	runProgram(`
-    1`);
+    4
+    abcd`);
 } else {
 	process.stdin.resume();
 	process.stdin.setEncoding('ascii');
