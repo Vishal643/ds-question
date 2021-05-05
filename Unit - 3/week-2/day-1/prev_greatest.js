@@ -41,7 +41,6 @@ function runProgram(input) {
 			outputstr += '-1' + ' ';
 		} else {
 			outputstr += peek() + ' ';
-			// outputstr += i + ' ';
 		}
 		push(arr[i]);
 	}
